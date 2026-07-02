@@ -8,3 +8,8 @@ build/
 .vscode/
 .idea/
 .env.example
+docs/
+spec/
+*.md
+DESIGN.md
+!README.md
