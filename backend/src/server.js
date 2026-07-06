@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import routes from './routes/index.js';
 
 const app = express();
 
@@ -17,11 +18,8 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running' });
 });
 
-// Routes (to be implemented)
-app.use('/api/auth', (req, res) => res.status(404).json({ error: 'Auth routes not implemented' }));
-app.use('/api/posts', (req, res) => res.status(404).json({ error: 'Post routes not implemented' }));
-app.use('/api/adoptions', (req, res) => res.status(404).json({ error: 'Adoption routes not implemented' }));
-app.use('/api/products', (req, res) => res.status(404).json({ error: 'Product routes not implemented' }));
+// Routes
+app.use('/api', routes);
 
 // 404 handler
 app.use((req, res) => {
