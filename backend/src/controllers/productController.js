@@ -3,7 +3,14 @@ import { Product } from '../models/index.js';
 // Get all products
 export const getProducts = async (req, res) => {
     try {
-        const products = await Product.find()
+        const { location } = req.query;
+        let query = {};
+        
+        if (location) {
+            query.location = { $regex: location, $options: 'i' };
+        }
+
+        const products = await Product.find(query)
             .populate('seller', 'username profile.avatar')
             .sort({ createdAt: -1 });
         res.json(products);
@@ -15,14 +22,20 @@ export const getProducts = async (req, res) => {
 // Create a product
 export const createProduct = async (req, res) => {
     try {
-        const { title, description, price, images } = req.body;
+        const { title, description, price, location, contactInfo } = req.body;
+        let images = [];
+        if (req.file) {
+            images.push(`/uploads/${req.file.filename}`);
+        }
 
         const product = new Product({
             seller: req.user._id,
             title,
             description,
             price,
-            images: images || [],
+            images,
+            location,
+            contactInfo,
         });
 
         const createdProduct = await product.save();

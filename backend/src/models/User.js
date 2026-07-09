@@ -43,6 +43,27 @@ const userSchema = new mongoose.Schema(
                 default: "",
             },
         },
+
+        savedPosts: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Post",
+            }
+        ],
+
+        followers: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User",
+            }
+        ],
+
+        following: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User",
+            }
+        ]
     },
     {
         timestamps: true,

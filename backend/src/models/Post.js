@@ -20,10 +20,27 @@ const postSchema = new mongoose.Schema(
             default: 'general',
         },
 
+        location: {
+            type: String,
+        },
+
         images: [
             {
                 type: String,
             },
+        ],
+
+        videos: [
+            {
+                type: String,
+            },
+        ],
+
+        likes: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User",
+            }
         ],
     },
     {

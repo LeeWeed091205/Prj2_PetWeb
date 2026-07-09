@@ -60,6 +60,12 @@ const adoptionSchema = new mongoose.Schema(
                 ref: "User",
             },
         ],
+
+        postType: {
+            type: String,
+            enum: ["adoption", "lost"],
+            default: "adoption",
+        },
     },
     {
         timestamps: true,

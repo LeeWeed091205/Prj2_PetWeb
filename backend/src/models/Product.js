@@ -29,6 +29,16 @@ const productSchema = new mongoose.Schema(
                 type: String,
             },
         ],
+
+        location: {
+            type: String,
+            required: true,
+        },
+
+        contactInfo: {
+            type: String,
+            required: true,
+        },
     },
     {
         timestamps: true,
